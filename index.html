@@ -39,16 +39,30 @@
       display: flex;
     }
 
+    /* #emoji-container {
+      position: fixed;
+      
+    } */
+
     #message-input {
       flex-grow: 1;
     }
   </style>
 </head>
 <body>
-  <div id="message-container"></div>
+  <div id="message-container"><h1>Emoji AND Charades</h1></div>
   <form id="send-container">
-    <input type="text" id="message-input">
-    <button type="submit" id="send-button">Send</button>
+    <div>
+      <p>Please, try to convery your AND title to the other chat members with emojis</p>
+      <p>And try to guess other chat memebers AND titles too!</p>
+    </div>
+    
+    <div class="input-container">
+      <emoji-picker></emoji-picker>
+      <input type="text" id="message-input">
+      <button type="submit" id="send-button">Send</button>
+    </div>
   </form>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
 </body>
 </html>

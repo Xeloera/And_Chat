@@ -4,7 +4,7 @@ const messageForm = document.getElementById('send-container')
 const messageInput = document.getElementById('message-input')
 
 const name = prompt('What is your name?')
-appendMessage('You joined')
+appendMessage(`${name} has joined`)
 socket.emit('new-user', name)
 
 socket.on('chat-message', data => {
@@ -21,8 +21,11 @@ socket.on('user-disconnected', name => {
 
 messageForm.addEventListener('submit', e => {
   e.preventDefault()
+  // document.querySelector('emoji-picker')
+  // .addEventListener('emoji-click', event => appendMessage(`You: ${event}`));
+  
   const message = messageInput.value
-  appendMessage(`You: ${message}`)
+  appendMessage(`${name}: ${message}`)
   socket.emit('send-chat-message', message)
   messageInput.value = ''
 })
@@ -32,3 +35,14 @@ function appendMessage(message) {
   messageElement.innerText = message
   messageContainer.append(messageElement)
 }
+
+ document.querySelector('emoji-picker')
+   .addEventListener('emoji-click', event => {
+    const messageInput = document.querySelector("#message-input")
+    const emoji = event.detail.emoji.unicode
+    console.log(emoji)
+    messageInput.value = messageInput.value +" "+emoji
+    //appendMessage(emoji)
+    console.log(messageInput)
+    console.log(messageContainer)
+   }); 
